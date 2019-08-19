@@ -1,0 +1,68 @@
+{% extends 'skmerApp/base.html' %}
+
+
+{% block title %}<title>Skmer resources</title>{% endblock title %}
+
+
+
+{% block content %}
+
+        <div class="container-fluid">
+            <h1 class="text-left">Resources</h1>
+            <br>
+                <div class="text-justify">
+                    <h2>Installation</h2>
+                    <ul>
+                        <p><strong>On 64-bit Linux and Mac OSX</strong>, you can install Skmer from bioconda channel using conda package manager.</p>
+                        <ol>
+                        <li>Install <a href="https://conda.io/miniconda.html" rel="nofollow">Miniconda</a> (you can skip this if you already have either of Miniconda or Anaconda installed).</li>
+                        <li>Add the bioconda channel by running the following commands in your terminal (order matters):</li>
+                        </ol>
+                        <pre><code>    conda config --add channels defaults
+                            conda config --add channels bioconda
+                            conda config --add channels conda-forge
+                        </code></pre>
+                        <ol start="3">
+                        <li>Run the following command to install Skmer (and all dependencies)</li>
+                        </ol>
+                        <pre><code>    conda install skmer
+                        </code></pre>
+                        <p><strong>Alternatively, and for all other OS and architectures</strong>, you can download the github repository and install Skmer using the setup script.</p>
+                        <ol>
+                        <li>You need to have python 2.7 or later installed</li>
+                        <li>Install <a href="http://www.genome.umd.edu/jellyfish.html" rel="nofollow">Jellyfish</a> (v2.2.6 or later), <a href="http://mash.readthedocs.io/en/latest/" rel="nofollow">Mash</a> (v1.1 or later), and <a href="https://github.com/lh3/seqtk">seqtk</a> (v1.3), and add the path to their binary to the system path (so you can, e.g., run <code>jellyfish --version</code>, <code>mash --version</code>, and <code>seqtk</code> successfully in the terminal).</li>
+                        <li>Clone the github repository by running (or you can download the repo)</li>
+                        </ol>
+                        <pre><code>    git clone https://github.com/shahab-sarmashghi/Skmer.git
+                        </code></pre>
+                        <ol start="4">
+                        <li>Change to the Skmer directory and run</li>
+                        </ol>
+                        <pre><code>    python setup.py install
+                        </code></pre></ul>
+
+                    </ul>
+
+
+                </div>
+                </p>
+
+                <div class = text-justify>
+                    <h2>Information</h2>
+                    <ul>
+                        <li>Github Page <span class="fab fa-github"></span> :<a href="https://github.com/shahab-sarmashghi/Skmer"> Skmer github </a></li>
+                        <li>Contact Email for web service <span class="fas fa-envelope"></span> : vsirupur@ucsd.edu</li>
+                        <li>Contact PhoneNo for web service <span class="fas fa-phone"></span> : +1 858-900-6992</li>
+                    </ul>
+
+                </div>
+
+        </div>
+
+
+
+
+
+
+
+{% endblock content %}

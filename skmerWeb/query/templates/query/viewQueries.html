@@ -1,0 +1,75 @@
+{% extends 'skmerApp/base.html' %}
+
+{% block title %}<title>Queries:{{ request.user.usename }}</title>{% endblock title %}
+
+
+{% block content %}
+
+         <div class="container-fluid">
+             <div class = text-left>
+                <h1> {{ request.user.username }}'s Queries</h1>
+             </div>
+
+
+         </br>
+
+<div class="row">
+<div class="col-md-9">
+<h2>Previous Queries</h2>
+
+{% if filecount == 0 %}
+    <p>You currently have no Queries</p>
+{% endif %}
+
+        <table class="table table-striped col-md-10">
+  <thead class="thead-dark">
+
+  <tbody>
+        {% for file,analysis in usersFiles %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td><a href="{{ file.fastQ.url }}">{{ file.printname }}</a></td>
+                <td>{{ file.collectionName }}</td>
+                <td> <a class="btn btn-primary btn-sm" href= "#" role="button">Query</a> Last Analysis : {{ analysis.createDateTime }}</td>
+                <td><a class="btn btn-primary btn-sm" href="{% url 'queryViewDistance' request.user.pk file.pk  %}" >View</a></td>
+                <td> <a class="btn btn-primary btn-sm" href={% url "queryDelete" request.user.pk file.pk %} role="button"><span class="fas fa-trash"></span>Delete</a></td>
+
+            </tr>
+         {% endfor %}
+  </tbody>
+</table>
+</div>
+
+         <div class = "col-md-3">
+         <h2>Upload Files</h2>
+         <br>
+         {% if messages %}
+
+    {% for message in messages %}
+      <div class="{{ message.tags }} text-primary">{{ message }}</div><br>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+         <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+    {% endfor %}
+<button class="btn btn-success btn-lg" type="submit">Upload Files</button>
+  </form>
+         </br>
+</div>
+</div>
+
+
+
+     </div>
+{% endblock content %}
+

@@ -1,0 +1,45 @@
+{% extends 'skmerApp/base.html' %}
+
+{% block title %}<title>Distance for :{{ query.biologicalName }}</title>{% endblock title %}
+
+
+{% block content %}
+
+         <div class="container-fluid">
+             <div class = text-left>
+                <h1> {{ query.biologicalName}} Distances</h1>
+             </div>
+
+
+            <div class="text-right">
+             <h1>
+                 <a class="btn btn-primary" href="{% url 'queryView' request.user.pk%}" role="button">Go Back</a></h1>
+            </div>
+
+             <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Reference Species </th>
+      <th scope="col">Edit Distance <a class="btn btn-primary btn-sm" href="{{ analysis.distanceEdit.url }}" download="" role="button">Download </a></th>
+      <th scope="col">Jukes Cantor Phylogeny Distance <a class="btn btn-primary btn-sm" href="{{ analysis.distanceJukesCantor.url }}" download role="button">Download </a></th>
+    </tr>
+  <tbody>
+        {% for ref,edit,jc in distancetable %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ ref }}</td>
+                <td>{{ edit }}</td>
+                <td>{{ jc}}</td>
+
+            </tr>
+         {% endfor %}
+  </tbody>
+</table>
+     </div>
+{% endblock content %}
+
+
+
+
+
